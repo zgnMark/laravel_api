@@ -9,5 +9,7 @@ return array(
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
+    'Frozennode\\Administrator' => array($vendorDir . '/summerblue/administrator/src'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
 );

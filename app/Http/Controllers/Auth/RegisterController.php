@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,9 +48,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name'  => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'captcha'  => 'required|captcha',
+        ], [
+            'name.required'  => '用户名不能为空', 
+            'email.required' => '邮箱不能为空', 
+            'name.required'  => '用户名不能为空', 
+            'password.required'  => '密码不能为空', 
+            'password.confirmed' => '密码不匹配', 
+            'captcha.required' => '验证码不能为空',
+            'captcha.captcha'  => '请输入正确的验证码',
         ]);
     }
 
@@ -58,7 +67,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
